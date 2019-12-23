@@ -1,0 +1,98 @@
+<?php
+/**
+ * @var \Boolfly\Blog\Block\PostContent $block
+ */
+$post = $block->getPost();
+$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+$image = 'related_products_list';
+$format = $block->getDateFormat() ?: \IntlDateFormatter::LONG;
+$relatedPosts = $block->getRelatedPosts();
+$countRelatedPosts = is_array($relatedPosts) ? count($relatedPosts) : $relatedPosts->count();
+$recentPosts = $block->getRecentPosts();
+$relatedProducts = $block->getRelatedProducts();
+$tags = $block->getTags();
+?>
+<div class="post-detail-title">
+    <h1><?= $block->escapeHtml($post->getTitle());?></h1>
+    <ul class="blog-post-info">
+        <li>
+            <?= __('By ')?>
+            <a class="author-link" href="<?= $block->escapeUrl($post->getAuthorUrl())?>">
+                <span class="author-name"><?= $block->escapeHtml($post->getAuthorFullName())?></span>
+            </a>
+        </li>
+        <li class="publish-date"><?= $block->escapeHtml($block->formatDate($post->getCreationTime(), $format)) ?></li>
+    </ul>
+    <div class="post-detail-content">
+        <?= $block->filterOutputHtml($post->getContent()); ?>
+    </div>
+    <?php if ($tags->getSize()): ?>
+        <div class="tag-list">
+            <ul class="tag-items">
+                <?php foreach ($tags as $tag):?>
+                    <li class="tag-item">
+                        <a class="tag-item-link" href="<?= $block->escapeUrl($tag->getTagtUrl()) ?>">
+                            <span class="tag-title"><?= $block->escapeHtml($tag->getName())?></span>
+                        </a>
+                    </li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+    <?php endif;?>
+    <?php if (count($relatedProducts)): ?>
+        <strong><?= $block->escapeHtml(__('Related products:'))?></strong>
+        <div class="products wrapper grid products-grid products-related">
+            <ol class="products list items product-items">
+                <?php foreach ($relatedProducts as $_item): ?>
+                    <li class="item product product-item">
+                        <div class="product-item-info">
+                            <?= /* @escapeNotVerified */ '<!-- ' . $image . '-->' ?>
+                            <a href="<?= /* @escapeNotVerified */ $block->getProductUrl($_item) ?>" class="product photo product-item-photo">
+                                <?= $block->getImage($_item, $image)->toHtml() ?>
+                            </a>
+                            <div class="product details product-item-details">
+                                <strong class="product name product-item-name"><a class="product-item-link" title="<?= $block->escapeHtml($_item->getName()) ?>" href="<?= /* @escapeNotVerified */ $block->getProductUrl($_item) ?>">
+                                        <?= $block->escapeHtml($_item->getName()) ?></a>
+                                </strong>
+
+                                <?= /* @escapeNotVerified */ $block->getProductPrice($_item) ?>
+
+                                <?php if ($templateType): ?>
+                                    <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach ?>
+            </ol>
+        </div>
+    <?php endif;?>
+    <?php if ($countRelatedPosts): ?>
+        <strong><?= $block->escapeHtml(__('Related posts:'))?></strong>
+        <div class="posts-grid">
+            <ol class="post-items">
+                <?php foreach ($relatedPosts as $relatedPost):?>
+                    <li class="post-item">
+                        <a class="post-item-link" href="<?= $block->escapeUrl($relatedPost->getPostUrl())?>">
+                            <span class="post-title"><?= $block->escapeHtml($relatedPost->getTitle())?></span>
+                        </a>
+                    </li>
+                <?php endforeach;?>
+            </ol>
+        </div>
+    <?php endif;?>
+    <?php if (!$countRelatedPosts && $recentPosts->getSize()) : ?>
+        <strong><?= $block->escapeHtml(__('Recent posts:'))?></strong>
+        <div class="posts-grid">
+            <ol class="post-items">
+                <?php foreach ($recentPosts as $recentPost):?>
+                    <li class="post-item">
+                        <a class="post-item-link" href="<?= $block->escapeUrl($recentPost->getPostUrl())?>">
+                            <span class="post-title"><?= $block->escapeHtml($recentPost->getTitle())?></span>
+                        </a>
+                    </li>
+                <?php endforeach;?>
+            </ol>
+        </div>
+    <?php endif;?>
+</div>

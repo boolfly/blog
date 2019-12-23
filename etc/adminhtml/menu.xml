@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Boolfly_Blog::bf_blog" title="Blog" module="Boolfly_Blog" sortOrder="15" resource="Boolfly_Blog::bf_blog" parent="Magento_Backend::content"/>
+        <add id="Boolfly_Blog::bf_category" title="Categories" translate="title" module="Boolfly_Blog" sortOrder="0" parent="Boolfly_Blog::bf_blog" action="bf_blog/category" resource="Boolfly_Blog::category"/>
+        <add id="Boolfly_Blog::bf_post" title="Posts" translate="title" module="Boolfly_Blog" sortOrder="30" parent="Boolfly_Blog::bf_blog" action="bf_blog/post" resource="Boolfly_Blog::post"/>
+        <add id="Boolfly_Blog::bf_author" title="Authors" translate="title" module="Boolfly_Blog" sortOrder="40" parent="Boolfly_Blog::bf_blog" action="bf_blog/author" resource="Boolfly_Blog::author"/>
+        <add id="Boolfly_Blog::bf_tag" title="Tags" translate="title" module="Boolfly_Blog" sortOrder="50" parent="Boolfly_Blog::bf_blog" action="bf_blog/tag" resource="Boolfly_Blog::tag"/>
+    </menu>
+</config>

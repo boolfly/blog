@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="boolfly" translate="label" sortOrder="400">
+            <label><![CDATA[Boolfly]]></label>
+        </tab>
+        <section id="blog_setting" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Blog</label>
+            <tab>boolfly</tab>
+            <resource>Boolfly_Blog::config_blog</resource>
+            <group id="general" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <comment>select Blog status</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Blog Title</label>
+                    <comment>Set title for blog.</comment>
+                </field>
+                <field id="router" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Route to Blog</label>
+                    <comment>Please enter a valid URL Key (Ex: "example","example-page" or "example123").</comment>
+                    <validate>validate-identifier maximum-length-250 required-entry</validate>
+                </field>
+                <field id="posts_per_page" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Posts per page</label>
+                    <comment>Please enter the number between 1 to 20.</comment>
+                    <validate>required-entry validate-number-range number-range-1-20</validate>
+                </field>
+                <field id="related_posts" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Number Of Related Posts</label>
+                    <comment>Related posts are auto-picked basing on tags.Please enter the number between 1 to 5.</comment>
+                    <validate>required-entry validate-number-range number-range-1-5</validate>
+                </field>
+            </group>
+            <group id="sidebar" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sidebar Settings</label>
+                <field id="number_popular_tags" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Number of Popular Tags to Display</label>
+                    <comment>Please enter the number between 1 to 10.</comment>
+                    <validate>required-entry validate-number-range number-range-1-10</validate>
+                </field>
+                <field id="maximum_categories" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Number of Categories to Display</label>
+                    <comment>Please enter the number between 0 to 20. Set 0 to show all.</comment>
+                    <validate>required-entry validate-number-range number-range-0-20</validate>
+                </field>
+            </group>
+            <group id="seo" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Search Engine Optimization</label>
+                <field id="meta_title" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Meta Title</label>
+                    <comment>Max length is 255.</comment>
+                    <validate>validate-length maximum-length-255</validate>
+                </field>
+                <field id="meta_keywords" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Meta Keywords</label>
+                    <comment>Max length is 255.</comment>
+                    <validate>validate-length maximum-length-255</validate>
+                </field>
+                <field id="meta_description" translate="label" type="textarea" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Meta Description</label>
+                    <comment>Please enter meta description.</comment>
+                </field>
+            </group>
+            <group id="related_products" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Related Products</label>
+                <field id="display_products" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Related Products on Post Pages</label>
+                    <comment>select status</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="number_related_products" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Number of Related Products to Display</label>
+                    <comment>Please enter the number between 1 to 20.</comment>
+                    <validate>required-entry validate-number-range number-range-1-20</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

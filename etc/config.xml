@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <blog_setting>
+            <general>
+                <enable>1</enable>
+                <title>Blog</title>
+                <router>blog</router>
+                <posts_per_page>5</posts_per_page>
+                <related_posts>3</related_posts>
+            </general>
+            <sidebar>
+                <number_popular_tags>10</number_popular_tags>
+                <maximum_categories>0</maximum_categories>
+            </sidebar>
+            <seo>
+                <meta_title>Blog</meta_title>
+                <meta_keywords>Newest posts</meta_keywords>
+                <meta_description>blog by Boolfly team</meta_description>
+            </seo>
+            <related_products>
+                <display_products>1</display_products>
+                <number_related_products>10</number_related_products>
+            </related_products>
+        </blog_setting>
+    </default>
+</config>

@@ -1,0 +1,23 @@
+<?php
+/**
+ * Category left navigation
+ *
+ * @var \Boolfly\Blog\Block\CategoryList $block
+ */
+?>
+<?php $categories = $block->getCategoryList(); ?>
+<?php if ($categories->count()): ?>
+    <div class="block filter">
+        <div class="topics content">
+            <strong class="title"><?= __('Topics') ?></strong>
+            <ul class="topic-items">
+                <?php /** @var \Boolfly\Blog\Model\Category $category */ ?>
+                <?php foreach ($categories as $category): ?>
+                    <li class="topic-item">
+                        <a href="<?= $block->escapeUrl($category->getCategoryUrl()) ?>"><?= $block->escapeHtml($category->getName()) ?></a>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>

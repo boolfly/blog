@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="bf_blog_block" class="Boolfly\Blog\Block\Widget\BlogPost">
+        <label translate="true">Boolfly Blog Block</label>
+        <description translate="true">Contents of Boolfly Blog Block</description>
+        <parameters>
+            <parameter name="template" xsi:type="select" visible="true" required="true" sort_order="60">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="Boolfly_Blog::blog/widget/post_grid.phtml" selected="true">
+                        <label translate="true">Boolfly Blog Block Default Template</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="blog_widget_title" xsi:type="text" required="true" visible="true">
+                <label translate="true">Title</label>
+                <value>Blog</value>
+            </parameter>
+            <parameter name="category_filter" xsi:type="select" visible="true"
+                       source_model="Boolfly\Blog\Model\Config\Source\Widget\Categories">
+                <label translate="true">Posts Category</label>
+            </parameter>
+            <parameter name="tag_filter" xsi:type="select" visible="true"
+                       source_model="Boolfly\Blog\Model\Config\Source\Widget\Tags">
+                <label translate="true">Posts Tag</label>
+            </parameter>
+            <parameter name="post_display" xsi:type="text" required="true" visible="true">
+                <label translate="true">Number of Posts to Display</label>
+                <value>10</value>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

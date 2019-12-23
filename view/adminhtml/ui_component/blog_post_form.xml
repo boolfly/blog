@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">blog_post_form.blog_post_form_data_source</item>
+            <item name="deps" xsi:type="string">blog_post_form.blog_post_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Post Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="reverseMetadataMerge" xsi:type="boolean">true</item>
+
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Boolfly\Blog\Block\Adminhtml\Edit\BackButton</item>
+            <item name="reset" xsi:type="string">Boolfly\Blog\Block\Adminhtml\Edit\ResetButton</item>
+            <item name="save" xsi:type="string">Boolfly\Blog\Block\Adminhtml\Edit\SaveButton</item>
+        </item>
+    </argument>
+    <settings>
+        <namespace>blog_post_form</namespace>
+        <dataScope>data</dataScope>
+    </settings>
+    <dataSource name="question_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Boolfly\Blog\Ui\DataProvider\PostDataProvider</argument>
+            <argument name="name" xsi:type="string">blog_post_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">post_id</argument>
+            <argument name="requestFieldName" xsi:type="string">post_id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+                <item name="submit_url" path="*/*/save" xsi:type="url"/>
+            </item>
+        </argument>
+
+    </dataSource>
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <collapsible>false</collapsible>
+            <label/>
+        </settings>
+        <field name="post_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">boolfly_blog_post</item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_active" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                    <item name="source" xsi:type="string">boolfly_blog_post</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="string">0</map>
+                            <map name="true" xsi:type="string">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Title</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">boolfly_blog_post</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="category_ids">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Boolfly\Blog\Model\Config\Source\Categories</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Categories</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                    <item name="elementTmpl" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="showCheckbox" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                    <item name="levelsVisibility" xsi:type="number">1</item>
+                    <item name="source" xsi:type="string">boolfly_blog_post</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="listens" xsi:type="array">
+                        <item name="index=create_category:responseData" xsi:type="string">setParsed</item>
+                        <item name="newOption" xsi:type="string">toggleOptionSelected</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="tag_ids">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Boolfly\Blog\Model\Config\Source\Tags</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Tags</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                    <item name="elementTmpl" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="showCheckbox" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                    <item name="levelsVisibility" xsi:type="number">1</item>
+                    <item name="source" xsi:type="string">boolfly_blog_post</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                    <item name="listens" xsi:type="array">
+                        <item name="index=create_category:responseData" xsi:type="string">setParsed</item>
+                        <item name="newOption" xsi:type="string">toggleOptionSelected</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="author_id" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">boolfly_blog_post</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Author</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Boolfly\Blog\Model\Config\Source\Authors"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="store_ids" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="source" xsi:type="string">boolfly_blog_post</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Store View</label>
+                <dataScope>store_ids</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Boolfly\Blog\Ui\Component\Listing\Column\Cms\Options"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <fieldset name="contents">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Content</item>
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                </item>
+            </argument>
+            <field name="image" template="Boolfly_Blog/form/element/uploader/image" formElement="imageUploader">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">boolfly_blog_post</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Image</label>
+                    <visible>true</visible>
+                </settings>
+                <formElements>
+                    <imageUploader>
+                        <settings>
+                            <uploaderConfig>
+                                <param xsi:type="url" name="url" path="bf_blog/post_image/upload"/>
+                            </uploaderConfig>
+                            <previewTmpl>Boolfly_Blog/image-preview</previewTmpl>
+                            <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                            <maxFileSize>2097152</maxFileSize>
+                        </settings>
+                    </imageUploader>
+                </formElements>
+            </field>
+            <field name="short_content">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">textarea</item>
+                        <item name="source" xsi:type="string">boolfly_blog_post</item>
+                        <item name="label" xsi:type="string">Short Content</item>
+                        <item name="template" xsi:type="string">ui/form/field</item>
+                        <item name="rows" xsi:type="number">8</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="content">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">wysiwyg</item>
+                        <item name="source" xsi:type="string">boolfly_blog_post</item>
+                        <item name="label" xsi:type="string">Content</item>
+                        <item name="template" xsi:type="string">ui/form/field</item>
+                        <item name="wysiwyg" xsi:type="boolean">true</item>
+                        <item name="rows" xsi:type="number">8</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+        </fieldset>
+    </fieldset>
+    <fieldset name="seo">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Search Engine Optimization </item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">56</item>
+            </item>
+        </argument>
+        <field name="url_key">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">URL-Key</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">boolfly_blog_post</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="meta_title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Meta Title</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="rows" xsi:type="number">4</item>
+                    <item name="source" xsi:type="string">boolfly_blog_post</item>
+                </item>
+            </argument>
+        </field>
+        <field name="meta_keywords">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Meta Keywords</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="rows" xsi:type="number">4</item>
+                    <item name="source" xsi:type="string">boolfly_blog_post</item>
+                </item>
+            </argument>
+        </field>
+        <field name="meta_description">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Meta Description</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="rows" xsi:type="number">4</item>
+                    <item name="source" xsi:type="string">boolfly_blog_post</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="products" sortOrder="75">
+        <settings>
+            <label translate="true">Related Products</label>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+        </settings>
+        <button name="add_button" template="ui/form/components/button/container">
+            <settings>
+                <title translate="true">Add Products</title>
+                <dataScope />
+            </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">container</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.parentName }.modal</item>
+                            <item name="actionName" xsi:type="string">toggleModal</item>
+                        </item>
+                    </item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-small</item>
+                </item>
+            </argument>
+        </button>
+        <dynamicRows name="products" component="Magento_Ui/js/dynamic-rows/dynamic-rows-grid" template="ui/dynamic-rows/templates/grid" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="map" xsi:type="array">
+                        <item name="entity_id" xsi:type="string">entity_id</item>
+                        <item name="name" xsi:type="string">name</item>
+                        <item name="sku" xsi:type="string">sku</item>
+                        <item name="price" xsi:type="string">price</item>
+                        <item name="is_active" xsi:type="string">status</item>
+                    </item>
+                    <item name="identificationDRProperty" xsi:type="string">entity_id</item>
+                    <item name="columnsHeaderAfterRender" xsi:type="boolean">true</item>
+                    <item name="deleteButtonLabel" xsi:type="string" translate="true">Remove</item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-wide</item>
+                    <item name="dataProvider" xsi:type="string">data.product_listing</item>
+                </item>
+            </argument>
+            <settings>
+                <defaultRecord>false</defaultRecord>
+                <addButton>false</addButton>
+                <recordTemplate>record</recordTemplate>
+                <identificationProperty>entity_id</identificationProperty>
+                <links>
+                    <link name="insertData">${ $.provider }:${ $.dataProvider }</link>
+                </links>
+                <dndConfig>
+                    <param name="enabled" xsi:type="boolean">false</param>
+                </dndConfig>
+                <columnsHeader>false</columnsHeader>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="componentType" xsi:type="string">container</item>
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                    </item>
+                </argument>
+                <field name="entity_id" formElement="input" sortOrder="10">
+                    <settings>
+                        <elementTmpl>ui/dynamic-rows/cells/text</elementTmpl>
+                        <dataType>text</dataType>
+                        <dataScope>entity_id</dataScope>
+                        <label translate="true">ID</label>
+                    </settings>
+                </field>
+                <field name="name" formElement="input" sortOrder="20">
+                    <settings>
+                        <elementTmpl>ui/dynamic-rows/cells/text</elementTmpl>
+                        <label translate="true">Name</label>
+                        <labelVisible>false</labelVisible>
+                        <dataScope>name</dataScope>
+                    </settings>
+                </field>
+                <field name="sku" formElement="input" sortOrder="25">
+                    <settings>
+                        <elementTmpl>ui/dynamic-rows/cells/text</elementTmpl>
+                        <dataType>text</dataType>
+                        <label translate="true">Sku</label>
+                        <dataScope>sku</dataScope>
+                    </settings>
+                </field>
+                <field name="price" formElement="input" sortOrder="30">
+                    <settings>
+                        <elementTmpl>ui/dynamic-rows/cells/text</elementTmpl>
+                        <label translate="true">Price</label>
+                        <labelVisible>false</labelVisible>
+                        <dataScope>price</dataScope>
+                    </settings>
+                </field>
+                <field name="is_active" formElement="select" sortOrder="35">
+                    <settings>
+                        <dataType>text</dataType>
+                        <dataScope>is_active</dataScope>
+                        <label translate="true">Status</label>
+                        <disabled>true</disabled>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <options class="Boolfly\Blog\Model\Config\Source\Status"/>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+                <actionDelete name="actionDelete" sortOrder="40">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="additionalClasses" xsi:type="string">data-grid-actions-cell</item>
+                            <item name="fit" xsi:type="number">1</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <label translate="true">Actions</label>
+                        <dataType>text</dataType>
+                        <componentType>actionDelete</componentType>
+                    </settings>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+        <modal name="modal">
+            <settings>
+                <options>
+                    <option name="title" xsi:type="string" translate="true">Add Producs</option>
+                    <option name="buttons" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="text" xsi:type="string">Cancel</item>
+                            <item name="class" xsi:type="string">action-secondary</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">${ $.name }</item>
+                                    <item name="actionName" xsi:type="string">actionCancel</item>
+                                </item>
+                            </item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="text" xsi:type="string" translate="true">Add Selected Products</item>
+                            <item name="class" xsi:type="string">action-primary</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">index = product_listing</item>
+                                    <item name="actionName" xsi:type="string">save</item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">${ $.name }</item>
+                                    <item name="actionName" xsi:type="string">actionDone</item>
+                                </item>
+                            </item>
+                        </item>
+                    </option>
+                </options>
+            </settings>
+            <insertListing name="product_listing">
+                <settings>
+                    <autoRender>true</autoRender>
+                    <dataScope>product_listing</dataScope>
+                    <ns>product_listing</ns>
+                    <externalProvider>product_listing.product_listing_data_source</externalProvider>
+                    <selectionsProvider>product_listing.product_listing.product_columns.ids</selectionsProvider>
+                    <dataLinks>
+                        <imports>false</imports>
+                        <exports>true</exports>
+                    </dataLinks>
+                    <externalFilterMode>true</externalFilterMode>
+                </settings>
+            </insertListing>
+        </modal>
+    </fieldset>
+</form>

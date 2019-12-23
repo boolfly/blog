@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="sidebar.additional">
+            <block class="Boolfly\Blog\Block\CategoryList" name="blog.leftnav.category" before="-" template="Boolfly_Blog::blog/sidebar/category.phtml" ifconfig="blog_setting/general/enable"/>
+            <block class="Boolfly\Blog\Block\TagList" name="blog.leftnav.tag" after="blog.leftnav.category" template="Boolfly_Blog::blog/sidebar/tag.phtml" ifconfig="blog_setting/general/enable"/>
+        </referenceContainer>
+    </body>
+</page>

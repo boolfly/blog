@@ -1,0 +1,50 @@
+<?php
+/**
+ * @var \Boolfly\Blog\Block\Widget\BlogPost $block
+ */
+$format = $block->getDateFormat() ?: \IntlDateFormatter::LONG;
+$posts = $block->getPostList();
+?>
+<?php if ($posts->count()):?>
+<div class="content-heading">
+    <h2 class="title"><?= $block->escapeHtml($block->getContentHeading());?></h2>
+    <p class="info"><?= __('The Newest Posts')?></p>
+</div>
+<div class="widget-post-grid">
+    <div class="block-content">
+        <ol class="post-items-widget-post-grid post-items">
+            <?php foreach ($posts as $post):?>
+            <li class="post-item blog-post-list-item">
+                <h3 class="blog-post-item-title">
+                    <a href="<?= $block->escapeUrl($post->getPostUrl()) ?>"
+                       class="post-item-link">
+                        <?= $block->escapeHtml(__($post->getTitle())) ?>
+                    </a>
+                </h3>
+                <div class="blog-post-item-meta">
+                    <?php echo __('By ');?>
+                    <a class="author-link" href="<?= $block->escapeUrl($post->getAuthorUrl())?>">
+                        <span class="author-name"><?= $block->escapeHtml($post->getAuthorFullName())?></span>
+                    </a>
+                    <?= $block->escapeHtml($block->formatDate($post->getCreationTime(), $format)) ?>
+                </div>
+                <div class="blog-post-item-image">
+                    <a href="<?= $block->escapeUrl($post->getPostUrl()) ?>"
+                       class="post-link">
+                        <img class="post-image" src="<?= $post->getImageUrl(); ?>"
+                             alt="<?= $block->escapeHtml($post->getTitle())?>"/>
+                    </a>
+                </div>
+                <div class="blog-post-item-short-content"><?= $block->escapeHtml($post->getShortContent()) ?></div>
+                <div class="read-more">
+                    <a href="<?= $block->escapeUrl($post->getPostUrl()) ?>"
+                       class="post-link">
+                        <?= $block->escapeHtml(__('Read more')) ?>
+                    </a>
+                </div>
+            </li>
+            <?php endforeach;?>
+        </ol>
+    </div>
+</div>
+<?php endif;?>

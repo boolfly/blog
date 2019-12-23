@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::content">
+                    <resource id="Magento_Backend::content_elements">
+                        <resource id="Boolfly_Blog::author" title="Blog Authors" translate="title" sortOrder="99">
+                            <resource id="Boolfly_Blog::author_save" title="Edit And Save Author" sortOrder="10" />
+                            <resource id="Boolfly_Blog::author_delete" title="Delete Author" sortOrder="20" />
+                        </resource>
+                        <resource id="Boolfly_Blog::category" title="Blog Categories" translate="title" sortOrder="101">
+                            <resource id="Boolfly_Blog::category_save" title="Edit And Save Category" sortOrder="10" />
+                            <resource id="Boolfly_Blog::category_delete" title="Delete Category" sortOrder="20" />
+                        </resource>
+                        <resource id="Boolfly_Blog::post" title="Blog Posts" translate="title" sortOrder="102">
+                            <resource id="Boolfly_Blog::post_save" title="Edit And Save Post" sortOrder="10" />
+                            <resource id="Boolfly_Blog::post_delete" title="Delete Post" sortOrder="20" />
+                        </resource>
+                        <resource id="Boolfly_Blog::tag" title="Blog Tags" translate="title" sortOrder="105">
+                            <resource id="Boolfly_Blog::tag_save" title="Edit And Save Tag" sortOrder="10" />
+                            <resource id="Boolfly_Blog::tag_delete" title="Delete Tag" sortOrder="20" />
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Boolfly_Blog::config_blog" title="Blog Management" translate="title" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

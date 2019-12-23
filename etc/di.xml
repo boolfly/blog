@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Boolfly\Blog\Api\Data\CategoryInterface" type="Boolfly\Blog\Model\Category"/>
+    <preference for="Boolfly\Blog\Api\Data\PostInterface" type="Boolfly\Blog\Model\Post"/>
+    <preference for="Boolfly\Blog\Api\Data\AuthorInterface" type="Boolfly\Blog\Model\Author"/>
+    <virtualType name="BoolflyCategoryGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Boolfly\Blog\Model\ResourceModel\Category\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">BoolflyCategoryGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="BoolflyPostGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Boolfly\Blog\Model\ResourceModel\Post\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">BoolflyPostGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="BoolflyAuthorGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Boolfly\Blog\Model\ResourceModel\Author\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">BoolflyAuthorGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="BoolflyTagGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Boolfly\Blog\Model\ResourceModel\Tag\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">BoolflyTagGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="BoolflyCategoryGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="BoolflyPostGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="BoolflyAuthorGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="BoolflyTagGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="boolflyblog_category_listing_data_source" xsi:type="string">Boolfly\Blog\Model\ResourceModel\Category\Grid\Collection</item>
+                <item name="boolflyblog_post_listing_data_source" xsi:type="string">Boolfly\Blog\Model\ResourceModel\Post\Grid\Collection</item>
+                <item name="boolflyblog_author_listing_data_source" xsi:type="string">Boolfly\Blog\Model\ResourceModel\Author\Grid\Collection</item>
+                <item name="boolflyblog_tag_listing_data_source" xsi:type="string">Boolfly\Blog\Model\ResourceModel\Tag\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Boolfly\Blog\Model\ResourceModel\Category\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bf_blog_category</argument>
+            <argument name="eventPrefix" xsi:type="string">bf_blog_category_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">bf_blog_category_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Boolfly\Blog\Model\ResourceModel\Category</argument>
+        </arguments>
+    </type>
+    <type name="Boolfly\Blog\Model\ResourceModel\Post\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bf_blog_post</argument>
+            <argument name="eventPrefix" xsi:type="string">bf_blog_post_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">bf_blog_post_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Boolfly\Blog\Model\ResourceModel\Post</argument>
+        </arguments>
+    </type>
+    <type name="Boolfly\Blog\Model\ResourceModel\Author\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bf_blog_author</argument>
+            <argument name="eventPrefix" xsi:type="string">bf_blog_author_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">bf_blog_author_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Boolfly\Blog\Model\ResourceModel\Author</argument>
+        </arguments>
+    </type>
+    <type name="Boolfly\Blog\Model\ResourceModel\Tag\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bf_blog_tag</argument>
+            <argument name="eventPrefix" xsi:type="string">bf_blog_tag_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">bf_blog_tag_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Boolfly\Blog\Model\ResourceModel\Tag</argument>
+        </arguments>
+    </type>
+    <type name="Boolfly\Blog\Block\PostContent">
+        <arguments>
+            <argument name="templateProcessor" xsi:type="object">Magento\Widget\Model\Template\Filter</argument>
+        </arguments>
+    </type>
+    <virtualType name="Boolfly\Blog\AuthorImageUpload" type="Boolfly\Blog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">blog/tmp/author</argument>
+            <argument name="basePath" xsi:type="string">blog/author</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Boolfly\Blog\PostImageUpload" type="Boolfly\Blog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">blog/tmp/post</argument>
+            <argument name="basePath" xsi:type="string">blog/post</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Boolfly\Blog\Controller\Adminhtml\Author\Image\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Boolfly\Blog\AuthorImageUpload</argument>
+        </arguments>
+    </type>
+    <type name="Boolfly\Blog\Controller\Adminhtml\Post\Image\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Boolfly\Blog\PostImageUpload</argument>
+        </arguments>
+    </type>
+    <type name="Boolfly\Blog\Model\ResourceModel\Author">
+        <plugin name="author_image_processing" type="Boolfly\Blog\Plugin\ImageProcessing\Author\ImageProcessingPlugin" sortOrder="999"/>
+    </type>
+    <type name="Boolfly\Blog\Model\ResourceModel\Post">
+        <plugin name="post_image_processing" type="Boolfly\Blog\Plugin\ImageProcessing\Post\ImageProcessingPlugin" sortOrder="1001"/>
+    </type>
+    <type name="Boolfly\Blog\Plugin\ImageProcessing\Author\ImageProcessingPlugin">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Boolfly\Blog\AuthorImageUpload</argument>
+        </arguments>
+    </type>
+    <type name="Boolfly\Blog\Plugin\ImageProcessing\Post\ImageProcessingPlugin">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Boolfly\Blog\PostImageUpload</argument>
+        </arguments>
+    </type>
+    <!-- Add Plugin for add blog link in navigation -->
+    <type name="Magento\Theme\Block\Html\Topmenu">
+        <plugin name="add_menu_item_plugin" type="Boolfly\Blog\Plugin\Topmenu" sortOrder="10" disabled="false"/>
+    </type>
+</config>

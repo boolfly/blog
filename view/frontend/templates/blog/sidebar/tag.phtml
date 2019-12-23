@@ -1,0 +1,27 @@
+<?php
+/**
+ * Category left navigation
+ *
+ * @var \Boolfly\Blog\Block\TagList $block
+ */
+?>
+<?php $tags = $block->getTagList(); ?>
+<?php if ($tags->count()): ?>
+    <div class="block filter">
+        <div class="content">
+            <strong class="title"><?= __('Tags') ?></strong>
+            <div class="tag-list items">
+                <ul class="tag-items">
+                <?php /** @var \Boolfly\Blog\Model\Tag $tag */ ?>
+                <?php foreach ($tags as $tag): ?>
+                    <li class="tag-item">
+                    <a href="<?= $block->escapeUrl($tag->getTagtUrl()) ?>" class="item tag-item-link">
+                        <?= $block->escapeHtml($tag->getName()) ?>
+                    </a>
+                    </li>
+                <?php endforeach ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
