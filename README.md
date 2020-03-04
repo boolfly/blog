@@ -179,7 +179,7 @@ Click on it to show the Related Products list.
 Select products then click *"Add Selected products"* button  to attach the products to the post  
 ![new post](https://github.com/boolfly/wiki/blob/master/magento/magento2/images/blog/blog-09.png)
 
-Add Widget
+##### Add Widget
 
 Access to any page that you want to add the blog widget
 ![Add Widget](https://github.com/boolfly/wiki/blob/master/magento/magento2/images/blog/blog-10.png)
