@@ -35,9 +35,9 @@ class TagDataProvider extends AbstractDataProvider
      * @param array $data
      */
     public function __construct(
-        $name,
-        $primaryFieldName,
-        $requestFieldName,
+        string $name,
+        string $primaryFieldName,
+        string $requestFieldName,
         DataPersistorInterface $dataPersistor,
         CollectionFactory $collectionFactory,
         array $meta = [],
