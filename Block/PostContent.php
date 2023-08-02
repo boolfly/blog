@@ -24,8 +24,8 @@ use Magento\Framework\Pricing\Render;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
 use Zend_Db_Select;
-use Zend_Filter_Exception;
-use Zend_Filter_Interface;
+use Laminas\Filter\Exception as FilterException;
+use Laminas\Filter\FilterInterface as LaminasFilter;
 
 class PostContent extends AbstractBlock
 {
@@ -38,7 +38,7 @@ class PostContent extends AbstractBlock
     protected $postFactory;
 
     /**
-     * @var Zend_Filter_Interface
+     * @var LaminasFilter
      */
     protected $templateProcessor;
 
@@ -81,7 +81,7 @@ class PostContent extends AbstractBlock
      * View constructor.
      * @param Template\Context $context
      * @param PostFactory $postFactory
-     * @param Zend_Filter_Interface $templateProcessor
+     * @param LaminasFilter $templateProcessor
      * @param Config $config
      * @param Registry $registry
      * @param \Magento\Framework\View\Page\Config $pageConfig
@@ -97,7 +97,7 @@ class PostContent extends AbstractBlock
     public function __construct(
         Template\Context $context,
         PostFactory $postFactory,
-        Zend_Filter_Interface $templateProcessor,
+        LaminasFilter $templateProcessor,
         Config $config,
         Registry $registry,
         \Magento\Framework\View\Page\Config $pageConfig,
@@ -215,7 +215,7 @@ class PostContent extends AbstractBlock
     /**
      * @param $string
      * @return mixed
-     * @throws Zend_Filter_Exception
+     * @throws FilterException
      */
     public function filterOutputHtml($string)
     {

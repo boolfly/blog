@@ -67,9 +67,9 @@ class PostDataProvider extends AbstractDataProvider
      * @param array $data
      */
     public function __construct(
-        $name,
-        $primaryFieldName,
-        $requestFieldName,
+        string $name,
+        string $primaryFieldName,
+        string $requestFieldName,
         Registry $coreRegistry,
         File $fileInfo,
         CollectionFactory $collectionFactory,

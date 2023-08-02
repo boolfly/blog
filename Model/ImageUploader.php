@@ -61,10 +61,10 @@ class ImageUploader extends \Magento\Catalog\Model\ImageUploader
         DateTime $date,
         Random $random,
         LoggerInterface $logger,
-        $baseTmpPath,
-        $basePath,
-        $allowedExtensions,
-        $allowedMimeTypes = []
+        string $baseTmpPath,
+        string $basePath,
+        array $allowedExtensions,
+        array $allowedMimeTypes = []
     ) {
         parent::__construct(
             $coreFileStorageDatabase,

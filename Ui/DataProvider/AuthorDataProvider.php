@@ -43,9 +43,9 @@ class AuthorDataProvider extends AbstractDataProvider
      * @param array $data
      */
     public function __construct(
-        $name,
-        $primaryFieldName,
-        $requestFieldName,
+        string $name,
+        string $primaryFieldName,
+        string $requestFieldName,
         File $fileInfo,
         CollectionFactory $collectionFactory,
         DataPersistorInterface $dataPersistor,
