@@ -5,60 +5,52 @@
 $posts = $block->getPostList();
 $format = $block->getDateFormat() ?: \IntlDateFormatter::LONG;
 ?>
-<?php if ($block->getCurrentAuthor()):;?>
+<?php if ($block->getCurrentAuthor()):; ?>
     <div class="author-info">
         <div class="author-details">
-            <?php if ($block->getCurrentAuthor()->getImageUrl()):?>
+            <?php if ($block->getCurrentAuthor()->getImageUrl()): ?>
                 <div class="author-images">
-                    <img class="author-image" src="<?= $block->getCurrentAuthor()->getImageUrl(); ?>" alt="<?= $block->escapeHtml($block->getCurrentAuthor()->getAuthorFullName())?>"/>
+                    <img class="author-image" src="<?= $block->getCurrentAuthor()->getImageUrl(); ?>"
+                         alt="<?= $block->escapeHtml($block->getCurrentAuthor()->getAuthorFullName()) ?>"/>
                 </div>
-            <?php endif;?>
+            <?php endif; ?>
             <div class="author-description">
-            <?php if ($authorFullName = $block->getCurrentAuthor()->getAuthorFullName()):?>
-                <strong class="author-full-name">
-                    <?= $block->escapeHtml($authorFullName)?>
-                </strong>
-            <?php endif;?>
-            <?php if ($authorDescription = $block->getCurrentAuthor()->getDescription()):?>
-              <div class="author-full-description">
-                    <?= $block->escapeHtml($authorDescription)?>
-              </div>
-            <?php endif;?>
+                <?php if ($authorFullName = $block->getCurrentAuthor()->getAuthorFullName()): ?>
+                    <strong class="author-full-name"><?= $block->escapeHtml($authorFullName) ?></strong>
+                <?php endif; ?>
+                <?php if ($authorDescription = $block->getCurrentAuthor()->getDescription()): ?>
+                    <div class="author-full-description"><?= $block->escapeHtml($authorDescription) ?></div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
-    <div class="toolbar review-toolbar">
-        <?= $block->getChildHtml('toolbar') ?>
-    </div>
-<?php endif;?>
-<?php if ($posts->count()):?>
+    <div class="toolbar review-toolbar"><?= $block->getChildHtml('toolbar') ?></div>
+<?php endif; ?>
+<?php if ($posts->count()): ?>
     <ul class="blog-post-list">
-        <?php foreach ($posts as $post) :?>
+        <?php foreach ($posts as $post) : ?>
             <li class="blog-post-list-item">
-                <h2 class="blog-post-item-title">
-                    <a href="<?= $block->escapeUrl($post->getPostUrl()) ?>"
-                       class="post-item-link">
+                <a href="<?= $block->escapeUrl($post->getPostUrl()) ?>" class="post-link">
+                    <div class="blog-post-item-image">
+                        <img class="post-image" src="<?= $post->getImageUrl(); ?>"
+                             alt="<?= $block->escapeHtml($post->getTitle()) ?>"/>
+                    </div>
+                </a>
+                <h3 class="blog-post-item-title">
+                    <a href="<?= $block->escapeUrl($post->getPostUrl()) ?>" class="post-item-link">
                         <?= $block->escapeHtml(__($post->getTitle())) ?>
                     </a>
-                </h2>
+                </h3>
+                <div class="blog-post-item-short-content"><?= $block->escapeHtml($post->getShortContent()) ?></div>
                 <div class="blog-post-item-meta">
-                    <?php echo __('By ');?>
-                    <a class="author-link" href="<?= $block->escapeUrl($post->getAuthorUrl())?>">
-                        <span class="author-name"><?= $block->escapeHtml($post->getAuthorFullName())?></span>
+                    <?php echo __('Author: '); ?>
+                    <a class="author-link" href="<?= $block->escapeUrl($post->getAuthorUrl()) ?>">
+                        <span class="author-name"><?= $block->escapeHtml($post->getAuthorFullName()) ?></span>
                     </a>
                     <?= $block->escapeHtml($block->formatDate($post->getCreationTime(), $format)) ?>
                 </div>
-                <div class="blog-post-item-image">
-                    <a href="<?= $block->escapeUrl($post->getPostUrl()) ?>"
-                       class="post-link">
-                        <img class="post-image" src="<?= $post->getImageUrl(); ?>"
-                             alt="<?= $block->escapeHtml($post->getTitle())?>"/>
-                    </a>
-                </div>
-                <div class="blog-post-item-short-content"><?= $block->escapeHtml($post->getShortContent()) ?></div>
                 <div class="read-more">
-                    <a href="<?= $block->escapeUrl($post->getPostUrl()) ?>"
-                       class="post-link">
+                    <a href="<?= $block->escapeUrl($post->getPostUrl()) ?>" class="post-link">
                         <?= $block->escapeHtml(__('Read more')) ?>
                     </a>
                 </div>
@@ -66,9 +58,6 @@ $format = $block->getDateFormat() ?: \IntlDateFormatter::LONG;
         <?php endforeach; ?>
     </ul>
     <?php if ($block->getPagerHtml()): ?>
-        <div class="posts-toolbar toolbar bottom">
-            <?php echo $block->getPagerHtml(); ?>
-        </div>
+        <div class="posts-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
     <?php endif ?>
-<?php endif;?>
-
+<?php endif; ?>
