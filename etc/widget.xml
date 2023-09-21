@@ -17,6 +17,10 @@
                 <label translate="true">Title</label>
                 <value>Blog</value>
             </parameter>
+            <parameter name="blog_widget_description" xsi:type="text" visible="true">
+                <label translate="true">Description</label>
+                <value>Description</value>
+            </parameter>
             <parameter name="category_filter" xsi:type="select" visible="true"
                        source_model="Boolfly\Blog\Model\Config\Source\Widget\Categories">
                 <label translate="true">Posts Category</label>

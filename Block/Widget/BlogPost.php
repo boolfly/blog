@@ -30,13 +30,14 @@ class BlogPost extends AbstractBlock implements BlockInterface
      * @param array $data
      */
     public function __construct(
-        Template\Context $context,
-        Config $config,
-        Registry $registry,
-        PageConfig $pageConfig,
+        Template\Context  $context,
+        Config            $config,
+        Registry          $registry,
+        PageConfig        $pageConfig,
         CollectionFactory $collectionFactory,
-        array $data = []
-    ) {
+        array             $data = []
+    )
+    {
         $this->collectionFactory = $collectionFactory;
         parent::__construct($context, $config, $registry, $pageConfig, $data);
     }
@@ -76,6 +77,11 @@ class BlogPost extends AbstractBlock implements BlockInterface
         return $this->getData('blog_widget_title');
     }
 
+    public function getContentDescription()
+    {
+        return $this->getData('blog_widget_description');
+    }
+
     /**
      * Add data to the widget.
      *
@@ -112,7 +118,7 @@ class BlogPost extends AbstractBlock implements BlockInterface
      */
     public function getIdentities()
     {
-        return  [Post::CACHE_TAG . '_' . 'widget_posts'];
+        return [Post::CACHE_TAG . '_' . 'widget_posts'];
     }
 
     /**
